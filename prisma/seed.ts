@@ -8,7 +8,7 @@ async function main() {
 
   await prisma.user.upsert({
     where: { email: 'admin@example.com' },
-    update: {},
+    update: { password },
     create: {
       email: 'admin@example.com',
       password
@@ -33,14 +33,3 @@ main()
   .finally(async () => {
     await prisma.$disconnect();
   });
-// async function main() {
-//   const hashed = await bcrypt.hash('admin123', 10);
-//   await prisma.user.upsert({
-//     where: { email: 'admin@example.com' },
-//     update: {},
-//     create: { email: 'admin@example.com', password: hashed }
-//   });
-//   console.log('Seeded admin@example.com / admin123');
-// }
-
-// main().finally(() => prisma.$disconnect());
