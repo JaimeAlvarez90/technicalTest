@@ -49,7 +49,7 @@ export async function updateWalletHandler(req: Request, res: Response, next: Nex
 export async function deleteWalletHandler(req: Request, res: Response, next: NextFunction) {
   try {
     await services.deleteWallet(req.user!.id, req.params.id!);
-    res.status(204).send();
+    res.status(204).json({message: 'Wallet deleted successfully'});
   } catch (error) {
     next(error);
   }

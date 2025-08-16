@@ -11,9 +11,8 @@ import{
 } from "./wallets.controller.js";
 export const walletsRouter = Router();
 
-walletsRouter.use(requireAuth);
-walletsRouter.get("/", listWalletsHandler);
-walletsRouter.get("/:id", getWalletHandler);
-walletsRouter.post("/", validate(walletCreateSchema), createWalletHandler);
-walletsRouter.put("/:id", validate(walletUpdateSchema), updateWalletHandler);
-walletsRouter.delete("/:id", deleteWalletHandler);
+walletsRouter.get("/",requireAuth, listWalletsHandler);
+walletsRouter.get("/:id",requireAuth, getWalletHandler);
+walletsRouter.post("/",requireAuth, validate(walletCreateSchema), createWalletHandler);
+walletsRouter.put("/:id",requireAuth, validate(walletUpdateSchema), updateWalletHandler);
+walletsRouter.delete("/:id",requireAuth, deleteWalletHandler);

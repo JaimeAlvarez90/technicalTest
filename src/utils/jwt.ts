@@ -5,9 +5,9 @@ export function signJWT(payload: object): string {
   return jwt.sign(payload, env.JWT_SECRET, { expiresIn: '1h' });
 }
 
-export function verifyJWT(token: string): object | null {
+export function verifyJWT<T = any>(token: string): T | null {
   try {
-    return jwt.verify(token, env.JWT_SECRET) as object;
+    return jwt.verify(token, env.JWT_SECRET) as T;
   } catch (error) {
     return null;
   }

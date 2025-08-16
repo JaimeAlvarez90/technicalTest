@@ -51,7 +51,7 @@ export async function updateUserHandler(req: Request, res: Response, next: NextF
 export async function deleteUserHandler(req: Request, res: Response, next: NextFunction) {
   try {
     await services.deleteUser(req.params.id!);
-    res.sendStatus(204);
+    res.sendStatus(200).json({ message: 'User deleted successfully' });
   } catch (error: any) {
     if (error.code === 'P2003') {
       return res.status(404).json({ message: 'User not found' });
